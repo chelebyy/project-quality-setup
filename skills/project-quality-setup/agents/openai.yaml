@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Quality Setup"
+  short_description: "Project-aware tests, security and GitHub CI setup"
+  default_prompt: "Use $project-quality-setup to assess this project's quality system and implement suitable checks within my requested scope, considering its stack, GitHub visibility, entitlements and cost."
