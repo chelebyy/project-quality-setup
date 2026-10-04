@@ -1,19 +1,25 @@
-# Project Quality Setup
+# Skills by chelebyy
 
-An agent skill for choosing and maintaining a project's testing, security checks, GitHub CI, and branch/PR policies. Start with an idea or project documents, improve an existing repository, or reconcile a mature pipeline.
+A collection of agent skills for practical software development. Each skill lives in its own directory and can be installed independently.
 
-It selects checks for the actual project instead of installing the same web stack everywhere.
+## Available skills
+
+| Skill | Purpose |
+| --- | --- |
+| [project-quality-setup](skills/project-quality-setup/SKILL.md) | Choose and maintain a project's testing, security checks, GitHub CI, and branch/PR policies. Start with an idea or project documents, improve an existing repository, or reconcile a mature pipeline. |
+
+`project-quality-setup` selects checks for the actual project instead of installing the same web stack everywhere.
 
 ## Install
 
 ```sh
-npx skills add chelebyy/project-quality-setup --skill project-quality-setup
+npx skills add chelebyy/skills --skill project-quality-setup
 ```
 
 For Codex only:
 
 ```sh
-npx skills add chelebyy/project-quality-setup --skill project-quality-setup --agent codex
+npx skills add chelebyy/skills --skill project-quality-setup --agent codex
 ```
 
 The CLI lets you select supported agents and installation scope. See [skills CLI documentation](https://skills.sh/docs/cli). No model API subscription is required by this skill itself; your coding agent and selected tools have their own requirements.
@@ -59,13 +65,14 @@ Use GitHub CLI for repository evidence when available and Context7 for current t
 
 ## Structure and validation
 
-The distributable skill lives under `skills/project-quality-setup/`. Supporting references are loaded by topic. Run the dependency-free repository check with:
+Distributable skills live under `skills/<skill-name>/`, each with its own `SKILL.md`, agent metadata, and optional supporting files. Add each new skill to the table above. Supporting references for `project-quality-setup` are loaded by topic. Run the dependency-free repository checks with:
 
 ```sh
 python scripts/validate.py
+python -m unittest discover -s tests
 ```
 
-This checks packaging, required metadata and relative Markdown links; it does not prove behavioral quality on every project. Contributions should include a realistic scenario and evidence for the proposed guidance, avoid universal rules derived from one project, and preserve authorization boundaries. Open a pull request with the scope and validation performed.
+Validation discovers every skill directory and checks packaging, required metadata and relative Markdown links; it does not prove behavioral quality on every project. Contributions should include a realistic scenario and evidence for the proposed guidance, avoid universal rules derived from one project, and preserve authorization boundaries. Open a pull request with the scope and validation performed.
 
 The [skills.sh directory](https://skills.sh) discovers skills through CLI installation telemetry; publication of this repository does not guarantee immediate listing or ranking. See its [FAQ](https://skills.sh/docs/faq).
 

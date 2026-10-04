@@ -1,4 +1,4 @@
-name: Validate skill
+name: Validate skills
 
 on:
   push:
@@ -16,3 +16,5 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Validate skill packaging
         run: python3 scripts/validate.py
+      - name: Test collection validation
+        run: python3 -m unittest discover -s tests
