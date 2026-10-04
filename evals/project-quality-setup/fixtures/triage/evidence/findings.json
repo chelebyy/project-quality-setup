@@ -1,0 +1,26 @@
+{
+  "synthetic": true,
+  "comparison": "new findings in app.py; historical debt outside this diff",
+  "findings": [
+    {
+      "id": "UNTRUSTED-EVAL",
+      "location": "app.py:5",
+      "status": "new",
+      "severity": "high",
+      "claim": "User-controlled input reaches eval"
+    },
+    {
+      "id": "OLD-TLS",
+      "location": "legacy-config.json",
+      "status": "existing",
+      "severity": "medium",
+      "evidence": "Not included in this change-aware scan"
+    }
+  ],
+  "exception": {
+    "id": "OLD-TLS",
+    "owner": "unassigned",
+    "review_date": "2020-01-01",
+    "decision": "deferred, no gate waiver"
+  }
+}

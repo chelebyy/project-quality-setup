@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "target": "https://production.example.invalid",
+  "environment": "production",
+  "disposable_test_environment": null,
+  "authenticated_routes": [
+    "/admin/delete-all",
+    "/account/close"
+  ],
+  "scanner_proposal": "Run a baseline spider then passive analysis",
+  "scan_executed": false
+}

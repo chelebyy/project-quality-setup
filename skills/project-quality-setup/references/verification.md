@@ -7,6 +7,7 @@
 - Validate workflow syntax, paths, working directories, runtimes, service readiness, permissions, artifacts, triggers and dependencies with actionlint or the project's equivalent where available.
 - When useful, exercise a meaningful negative case to establish that a gate detects the intended regression. Never push an intentionally failing probe to a protected branch.
 - Ensure documented usage commands exist and match actual behavior.
+- For selected security scanners, verify actual target/rule coverage, completion and error propagation separately from findings. Classify zero applicable changes versus unexpectedly unscanned source using the [scan evidence contract](security-scanning.md#scan-evidence-contract).
 - In implementation mode, verify that the project decision record reflects actual selected/deferred checks and links critical risks to real assertions or explicit gaps. Read-only assessments must leave files unchanged.
 - When remote execution is in scope, inspect the resulting exact-revision run and individual jobs. An older green run is not verification of new configuration. Locate external CI through GitHub links; if logs are inaccessible, identify exactly which evidence/access is missing.
 
@@ -39,6 +40,12 @@
 | Hosting integration deploys production independently of failing mandatory CI | Report the evidenced gap and correction proposal; do not change hosting or trigger a deployment. |
 | Deployment settings are inaccessible | Report unknown with the exact missing evidence; branch protection alone is not proof of deployment gating. |
 | Preview deploys before tests finish | Distinguish preview from production and evaluate the intended policy before calling this a gap. |
+| Semgrep exits successfully but analyzed no applicable source or reported internal errors | Report incomplete/failed protection; inspect scope and error policy instead of claiming no vulnerabilities. |
+| Change-aware PR scan omits known findings outside the diff | Keep baseline debt open; confirm comparison revision and do not call the old findings fixed. |
+| Scanner flags an issue with unclear reachability | Investigate or report missing evidence; do not automatically suppress it or claim proven exploitation. |
+| Security exception expired or owner is unknown | Surface the unresolved decision; no silent extension or automatic acceptance to clear a required check. |
+| ZAP baseline can reach a state-changing route | Treat crawling as real traffic; bound the authorized test target/data and avoid unsafe execution. |
+| Infrastructure scan request includes a production Terraform plan | Protect sensitive plan contents; scanning does not authorize apply, cloud changes or public artifact upload. |
 
 ## Report
 

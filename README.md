@@ -50,6 +50,8 @@ Other agents may expose a different skill invocation UI. Instructions are in [SK
 
 - Platform-aware selection: web, React, native/Expo, Python, .NET, Go, containers, libraries and documentation.
 - Conditional tools such as React Doctor, Playwright, axe-core, Lighthouse CI, Expo Doctor, Dependabot, actionlint and relevant security scanners.
+- Semgrep selection and gate policy, scan completeness evidence, existing security debt, and accountable finding/exception handling.
+- Optional runtime security and infrastructure-as-code checks, such as ZAP or Checkov, only for applicable projects and authorized environments.
 - Public/private visibility, GitHub entitlements, permissions, runner cost and untrusted contribution boundaries.
 - PR requirements, real required checks, solo/team review policies, branch deletion/force-push protection and bypass visibility.
 - Project decision records, risk-to-test mapping, intermittent-test handling and maintenance on later invocations.
@@ -65,14 +67,24 @@ Use GitHub CLI for repository evidence when available and Context7 for current t
 
 ## Structure and validation
 
-Distributable skills live under `skills/<skill-name>/`, each with its own `SKILL.md`, agent metadata, and optional supporting files. Add each new skill to the table above. Supporting references for `project-quality-setup` are loaded by topic. Run the dependency-free repository checks with:
+Distributable skills live under `skills/<skill-name>/`, each with its own `SKILL.md`, agent metadata, and optional supporting files. Add each new skill to the table above. Supporting references for `project-quality-setup` are loaded by topic.
+
+For repository development, use Python 3.12 or newer (CI uses 3.12), preferably in a virtual environment. The pinned YAML/Markdown parsers are development dependencies for these checks; skill installation and use do not require Python or these packages. Run:
 
 ```sh
+python -m pip install -r requirements-dev.txt
 python scripts/validate.py
+python scripts/eval_cases.py
 python -m unittest discover -s tests
 ```
 
-Validation discovers every skill directory and checks packaging, required metadata and relative Markdown links; it does not prove behavioral quality on every project. Contributions should include a realistic scenario and evidence for the proposed guidance, avoid universal rules derived from one project, and preserve authorization boundaries. Open a pull request with the scope and validation performed.
+Validation discovers every skill directory and checks safe YAML parsing, nonempty name/description, duplicate keys, collection-required agent UI fields, and README catalog entries. This collection requires `interface.display_name`, a 25–64-character `short_description`, and a `default_prompt` mentioning the exact skill; these are collection conventions, not a complete external host schema. Optional policy/dependency metadata is preserved.
+
+Local Markdown validation covers inline/reference links and images in README, skill documents and the evaluation guide; it ignores fenced/inline code examples and external URLs. It checks repository boundaries, file existence, and Markdown heading/custom-anchor targets, including duplicate headings. It does not fetch external pages, validate anchors in non-Markdown files, or emulate every GitHub rendering extension/raw HTML link. Every skill must have a real README link to its entrypoint.
+
+The [behavioral evaluation inputs](evals/README.md) provide ten isolated scenarios and a preparation helper. Ordinary CI validates fixtures and preparation safety; it does **not** run a model or establish behavioral success. Keep actual agent transcripts, observed file changes and reviewer grading separate from packaging test results.
+
+Contributions should include a realistic scenario and evidence for the proposed guidance, avoid universal rules derived from one project, and preserve authorization boundaries. Open a pull request with the scope and validation performed.
 
 The [skills.sh directory](https://skills.sh) discovers skills through CLI installation telemetry; publication of this repository does not guarantee immediate listing or ranking. See its [FAQ](https://skills.sh/docs/faq).
 

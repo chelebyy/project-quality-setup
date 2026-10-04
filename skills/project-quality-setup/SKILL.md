@@ -41,6 +41,8 @@ Read [Project profiles](references/project-profiles.md) for the detected project
 
 When choosing named tools, read the matching sections of [Tool selection](references/tool-selection.md). Explicitly evaluate React Doctor for React projects and dependency-update automation for supported manifests/Actions. Record selected, already covered, not applicable, or deferred with a reason; do not silently omit relevant candidates or install the entire catalog.
 
+For source security scans, read [Security scanning](references/security-scanning.md): select Semgrep/CodeQL/equivalents by coverage, distinguish scan completion from findings, and handle existing debt and exceptions explicitly. For a running web/API or infrastructure configuration gap, consult [Runtime and infrastructure checks](references/runtime-infrastructure-checks.md); those options are conditional on the project and execution scope.
+
 For every selected check, define:
 
 | Decision | Required detail |
@@ -63,6 +65,7 @@ Map applicable critical risks to concrete scenarios, assertions and execution ev
 - Make core commands usable locally and in CI. Bound timeouts, retries, concurrency, service readiness, and test-data cleanup. Use isolated environments; do not run destructive tests against production by default.
 - Keep workflow permissions minimal and apply the GitHub reference's trust rules. Pin third-party actions to verified immutable revisions under repository policy and arrange updates.
 - Preserve failures. Do not broadly add `continue-on-error`, weaken assertions, or suppress findings to make checks green. Deliberately advisory checks must remain visible and documented.
+- Triage security findings and exceptions using the security-scanning reference. A scanner's empty report or omitted finding is not evidence of a fix unless the intended analysis actually ran; neither old debt nor an expiry note authorizes weakening a required gate.
 - For intermittent failures, follow the lifecycle reference's flaky-test procedure: preserve first-failure evidence, investigate before labeling, and record any authorized temporary quarantine with scope, owner and expiry. Retries do not erase instability.
 - Add concise project usage documentation: local commands, triggers, setup, failure/artifact locations, and how future features extend scenarios. Do not install global hooks/rules or change unrelated agent instructions unless requested.
 - Models are optional and require a concrete benefit plus authorized provider/cost use. Deterministic checks should not depend on a model by default.
