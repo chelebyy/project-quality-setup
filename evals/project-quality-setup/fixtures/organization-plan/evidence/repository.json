@@ -1,0 +1,23 @@
+{
+  "synthetic": true,
+  "repository": "example-org/offline-backend",
+  "visibility": "private",
+  "owner": {
+    "login": "example-org",
+    "type": "Organization"
+  },
+  "authenticated_user": {
+    "login": "example-contributor",
+    "plan": {
+      "name": "pro"
+    }
+  },
+  "organization_plan_evidence": {
+    "source": "synthetic organization billing settings snapshot",
+    "owner": "example-org",
+    "displayed_plan": "GitHub Free",
+    "security_addons": "unknown",
+    "usage_and_budget": "unknown"
+  },
+  "live_access": false
+}

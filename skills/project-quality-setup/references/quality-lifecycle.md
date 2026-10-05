@@ -8,7 +8,7 @@ Record only information that changes future decisions:
 
 - Assessed revision/date, project/platform boundaries, relevant runtime and hosting assumptions.
 - Check/tool decisions: selected or existing, omitted/deferred with reason, command/config location, local/CI trigger, and advisory/failing/verified-required status.
-- Relevant visibility/entitlement/cost constraints, including unknowns; no credentials, private billing details or invented cost estimates.
+- Repository visibility, owner identity/type, observed GitHub plan and its evidence source/date; distinguish API/settings verification, user-reported information and unknowns. Record relevant feature entitlements and usage/cost constraints separately; no credentials, private billing details or invented cost estimates.
 - Risk-to-test mapping, measured baseline/run evidence, and open work with next action.
 - Significant decisions and why they changed, keeping history brief instead of appending every run log.
 - For security scanning, retain the [coverage evidence, baseline and finding/exception decisions](security-scanning.md) needed to distinguish new issues, known debt and incomplete analysis. Reuse an existing finding tracker instead of duplicating sensitive reports here.
