@@ -1,0 +1,15 @@
+{
+  "synthetic": true,
+  "source": "offline GitHub Actions example",
+  "workflow": "Tests",
+  "conclusion": "success",
+  "test_summary": {
+    "run": 2,
+    "passed": 1,
+    "skipped": 1,
+    "failed": 0
+  },
+  "skipped_test": "test_full_catalog_count",
+  "skip_reason": "Provide a disposable local reports database",
+  "live_access": false
+}

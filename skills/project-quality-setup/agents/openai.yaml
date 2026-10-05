@@ -1,4 +1,4 @@
 interface:
   display_name: "Project Quality Setup"
-  short_description: "Project-aware tests, security and GitHub CI setup"
-  default_prompt: "Use $project-quality-setup within my requested scope and existing authorization. If neither authorizes changes, assess only. Consider the project's stack, GitHub visibility, entitlements and cost."
+  short_description: "Choose and set up project-specific GitHub Actions CI"
+  default_prompt: "Use $project-quality-setup to choose, implement and verify GitHub Actions CI for this project, checking repository visibility and the owner's GitHub plan, reusing existing tools and respecting my scope, authorization and cost constraints; report any unverified remote execution."

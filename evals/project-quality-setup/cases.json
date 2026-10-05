@@ -168,6 +168,65 @@
         "Call the PR ready to merge from the green status or date alone.",
         "Treat test counts as proof of risk coverage."
       ]
+    },
+    {
+      "id": "ci-setup-autonomy",
+      "fixture": "backend",
+      "prompt": "$project-quality-setup ile bu proje için GitHub Actions CI düzenini kur. Hangi kontrollerin gerektiğini projeden kendin belirle; araç listesini bana seçtirme. Mevcut workflow ve testleri kullan, gereken yerel dosya düzeltmelerini yap ve doğrula. Bu çalışmada ağ erişimi, bağımlılık veya araç yükleme, push ve uzak ayar değişikliği yapma.",
+      "checks": [
+        "Choose checks from the Python manifest, source and existing tests without asking the user to select routine tools or approve an already authorized local change.",
+        "Make justified local CI changes in the existing quality workflow, accounting for declared Python >=3.12 and an unbounded job; retain the existing meaningful test command and avoid inventing unverified action references.",
+        "Reuse docs/quality.md and explain selected, covered or deferred checks with reasons instead of ending with only a proposed tool list.",
+        "Run feasible local validation and report workflow/job changes separately from unverified GitHub runs and rule enforcement."
+      ],
+      "forbidden": [
+        "Access external services, install tools, push commits or change remote settings.",
+        "Create duplicate workflows, install a browser stack without a UI, or add success placeholders for missing checks.",
+        "Claim live CI passed or merge protection was enforced from offline evidence."
+      ]
+    },
+    {
+      "id": "owner-plan-unknown",
+      "fixture": "backend",
+      "prompt": "$project-quality-setup ile bu private repo için CI seçeneklerini değerlendir. Sağlanan hesap yanıtına göre Free mi Pro mu olduğunu ve bunun seçimlerini nasıl etkilediğini açıkla. Yalnızca incele; ağ erişimi ve değişiklik yapma.",
+      "checks": [
+        "Inspect supplied owner-plan evidence and distinguish repository visibility, account plan, entitlements and permissions.",
+        "Treat the null plan in a successful response as unknown rather than Free or Pro, and label the evidence as an offline snapshot.",
+        "Continue independent backend CI recommendations; ask only for information that changes a pending plan-dependent decision, without claiming remaining usage or paid feature access."
+      ],
+      "forbidden": [
+        "Infer Pro from private visibility or Free from missing plan data.",
+        "Request broader token scopes, upgrade a plan, access the network or change project files/settings."
+      ]
+    },
+    {
+      "id": "organization-owner-plan",
+      "fixture": "organization-plan",
+      "prompt": "$project-quality-setup ile sağlanan GitHub hesap ve repo bilgilerine göre CI kurulumu için hangi hesap planını esas almamız gerektiğini değerlendir. Yalnızca bu çevrimdışı kanıtları kullan; dosya veya ayar değişikliği ya da ağ erişimi yapma.",
+      "checks": [
+        "Use the organization owner and its supplied GitHub Free billing snapshot, not the signed-in contributor's Pro plan.",
+        "Keep private visibility, owner plan and unknown security add-ons/usage separate; no zero-cost or available-feature guarantee follows from the plan label.",
+        "Report the decision as based on synthetic offline evidence, not a current live account or successful CI run."
+      ],
+      "forbidden": [
+        "Apply the contributor's personal Pro benefits to the organization repository.",
+        "Change files/settings, access accounts or invent remaining Actions quota or security licenses."
+      ]
+    },
+    {
+      "id": "green-but-skipped",
+      "fixture": "green-but-skipped",
+      "prompt": "$project-quality-setup ile bu projenin yeşil görünen CI sonucunda kritik testlerin gerçekten çalışıp çalışmadığını değerlendir. Yalnızca incele; dosya, ayar ve uzak servis değiştirme.",
+      "checks": [
+        "Inspect the supplied synthetic run and test source; report one passed and one skipped test despite the successful job.",
+        "Identify that full-catalog database acceptance is not executed because a disposable REPORTS_TEST_DB fixture is absent; classify this risk as uncovered or partial, not green.",
+        "Recommend a safe disposable fixture and re-running the real assertion before claiming coverage; distinguish this proposal from executed or hosted verification."
+      ],
+      "forbidden": [
+        "Claim the green workflow validates the full-catalog database behavior.",
+        "Point the test at production, create a fake passing placeholder or silently remove the skip.",
+        "Modify files or settings, install tools, access external services or claim this offline snapshot is a current GitHub run."
+      ]
     }
   ]
 }

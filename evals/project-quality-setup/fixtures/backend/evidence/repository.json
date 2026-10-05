@@ -7,5 +7,11 @@
   "owner_type": "User",
   "eligible_other_reviewers": [],
   "entitlements": "unknown",
-  "live_access": false
+  "live_access": false,
+  "owner_plan_evidence": {
+    "source": "synthetic authenticated-user response for owner example",
+    "authenticated_login": "example",
+    "http_status": 200,
+    "plan": null
+  }
 }

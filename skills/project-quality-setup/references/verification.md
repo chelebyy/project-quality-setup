@@ -5,6 +5,7 @@
 - Check lockfile consistency with the supported toolchain and a clean locked installation where feasible; existing dependencies can mask an invalid tree.
 - Run relevant scripts/tests/build and selected browser/native checks. Broaden or repeat only for changed code, failures or unresolved risk.
 - For expected test suites, inspect runner reports for discovered, executed, failed and skipped tests and active filters; unexpected zero execution is incomplete validation, not a pass. Record unavailable counts as unknown; counts alone do not establish risk coverage.
+- A green job with skipped critical scenarios is partial coverage. Identify each skip prerequisite and the risk it leaves open; when implementation is in scope, provide safe disposable fixtures/services and verify the real assertion runs. Setting a flag or adding a placeholder that merely changes the test count does not establish coverage.
 - Validate workflow syntax, paths, working directories, runtimes, service readiness, permissions, artifacts, triggers and dependencies with actionlint or the project's equivalent where available.
 - When useful, exercise a meaningful negative case to establish that a gate detects the intended regression. Never push an intentionally failing probe to a protected branch.
 - Ensure documented usage commands exist and match actual behavior.
@@ -18,8 +19,11 @@
 | Scenario | Expected behavior |
 | --- | --- |
 | Public static site with existing Node tests | Reuse tests; select small browser/axe suite and limited Lighthouse if useful; examine hosting gaps and contribution trust. |
-| Private backend with unknown plan | Implement supported backend checks; report native security/enforcement unknown until verified; no browser stack without UI. |
+| Private backend with unknown plan | Seek owner-plan evidence; keep missing/denied plan unknown, continue independent backend CI work, and defer only unsupported decisions; no browser stack without UI. |
+| Pro contributor works in an organization repository | Use the organization's plan and feature entitlements; do not apply the contributor's personal plan to the repository. |
 | Expo with manual native E2E | Preserve deliberate gating unless changing it is in scope; distinguish types/unit/build from device execution. |
+| User asks to set up CI without naming tools | Select justified checks from the project, implement/reconcile workflows and supporting commands, and verify within authorization; no routine tool-selection questionnaire or proposal-only completion. |
+| Remote access or push is unavailable | Complete independent local workflow work and validation; report configuration prepared and the exact remote verification gap, not installed/passing GitHub CI. |
 | Existing failing CI | Read logs and repair narrowly before adding complexity. |
 | Repeated invocation | Reconcile existing configuration without duplicate workflows. |
 | Assessment-only | Findings and proposed changes only, no mutation. |
@@ -63,6 +67,6 @@ For branch-policy or pre-code work also review these cases:
 
 ## Report
 
-Include changes and risks covered; local commands and remote triggers; measured results with revision/run links; skips and reasons; advisory versus failing versus required outcomes; and remaining entitlement, hosting/device, cost or access gaps.
+Include selected checks and risks covered; workflow paths, jobs and triggers; local commands; measured results with revision/run links; skips and reasons; advisory versus failing versus required outcomes; and remaining entitlement, hosting/device, cost or access gaps. Report configuration prepared, local validation, actual GitHub Actions execution and merge enforcement separately. A local pass or generated workflow establishes neither a successful hosted run nor a required merge gate.
 
 Never claim future features are automatically covered. New behavior requires relevant scenarios/assertions to be added or updated; CI executes committed checks.
