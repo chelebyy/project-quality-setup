@@ -1,0 +1,36 @@
+{
+  "synthetic": true,
+  "fixture_checkout": "Project files are the current base revision c3c3c3c.",
+  "current_base": {
+    "branch": "trunk",
+    "sha": "c3c3c3c",
+    "latest_run": {
+      "conclusion": "success",
+      "tests": {
+        "discovered": 2,
+        "executed": 2,
+        "skipped": 0
+      }
+    }
+  },
+  "open_pull_requests": [
+    {
+      "number": 7,
+      "author": "dependabot[bot]",
+      "title": "Bump test runner from 3.1.1 to 4.0.0",
+      "check": "unit",
+      "conclusion": "success",
+      "completed_at": "2026-09-30T13:40:00Z",
+      "current_head_sha": "a1a1a1a",
+      "tested_head_sha": "a1a1a1a",
+      "tested_base_sha": "b2b2b2b",
+      "tested_checkout_sha": "d4d4d4d",
+      "tested_checkout_note": "Default actions/checkout merge commit of a1a1a1a onto b2b2b2b.",
+      "tests": {
+        "discovered": 1,
+        "executed": 1,
+        "skipped": 0
+      }
+    }
+  ]
+}

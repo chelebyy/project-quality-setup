@@ -1,0 +1,11 @@
+{
+  "synthetic": true,
+  "repository": "example/offline-backend",
+  "default_branch": "trunk",
+  "target_branch": "trunk",
+  "visibility": "private",
+  "owner_type": "User",
+  "eligible_other_reviewers": [],
+  "entitlements": "unknown",
+  "live_access": false
+}

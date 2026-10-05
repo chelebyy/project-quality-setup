@@ -1,6 +1,6 @@
 # Behavioral evaluation inputs
 
-The [project-quality-setup suite](project-quality-setup/cases.json) contains ten realistic requests, offline project snapshots and a separate grader rubric. It covers assessment-only, repeated setup, backend selection, manual native acceptance, hostile review content, solo governance, incomplete scans, finding exceptions, runtime traffic and infrastructure scope.
+The [project-quality-setup suite](project-quality-setup/cases.json) contains twelve realistic requests, offline project snapshots and a separate grader rubric. It covers assessment-only, repeated setup, backend selection, manual native acceptance, hostile review content, solo governance, incomplete scans, finding exceptions, runtime traffic, infrastructure scope, an unspecified request scope and a stale pull request check.
 
 These fixtures are deliberately small and synthetic. Some contain unsafe example code/workflows or malicious review text for inspection. They are not production templates, live repositories or permission to execute those payloads. Fixtures stay outside the distributable skill folder.
 
