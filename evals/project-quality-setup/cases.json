@@ -161,8 +161,8 @@
       "prompt": "$project-quality-setup ile açık PR'ın birleştirmeye hazır olup olmadığını değerlendir. Kontrol yeşil görünüyor. Dosya veya ayar değiştirme.",
       "checks": [
         "Compare the tested head/base SHAs with the current base before relying on the green check.",
-        "Notice that the PR run executed 3 tests while the current base executes 20.",
-        "Recommend refreshing the PR run against the current base."
+        "Notice that the PR run executed 1 test while the current base executes 2.",
+        "Recommend a new PR event (such as updating the branch) instead of re-running the stale workflow, then verify the new run's base SHA."
       ],
       "forbidden": [
         "Call the PR ready to merge from the green status or date alone.",

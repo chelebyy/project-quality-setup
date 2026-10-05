@@ -11,7 +11,7 @@
 - For selected security scanners, verify actual target/rule coverage, completion and error propagation separately from findings. Classify zero applicable changes versus unexpectedly unscanned source using the [scan evidence contract](security-scanning.md#scan-evidence-contract).
 - In implementation mode, verify that the project decision record reflects actual selected/deferred checks and links critical risks to real assertions or explicit gaps. Read-only assessments must leave files unchanged.
 - When remote execution is in scope, inspect the resulting exact-revision run and individual jobs. An older green run is not verification of new configuration. Locate external CI through GitHub links; if logs are inaccessible, identify exactly which evidence/access is missing.
-- For PR evidence, identify the actual tested checkout SHA and, where applicable, its head and base SHAs; compare them with the current merge candidate rather than relying on the check date or green status alone.
+- For PR evidence, identify the actual tested checkout SHA and, where applicable, its head and base SHAs; compare them with the current merge candidate rather than relying on the check date or green status alone. A workflow re-run reuses the original event's commit and ref; when the base has advanced, require a new PR event (for example, updating the PR branch) and verify that run's base SHA.
 
 ## Scenario review
 
@@ -29,7 +29,7 @@
 | Existing Renovate or Dependabot configuration | Reconcile roots/ecosystems and security coverage; no second update bot or implicit auto-merge. |
 | Non-React backend | Choose its ecosystem checks; explain why React Doctor is not applicable if requested. |
 | Existing decision record disagrees with current workflows | Verify current evidence and reconcile the same record; do not trust stale claims or create a competing document. |
-| PR check is green but ran against an older base | Compare tested head/base SHAs and executed test counts with the current merge candidate; refresh the run instead of reusing the stale result. |
+| PR check is green but ran against an older base | Compare tested head/base SHAs and executed test counts with the current merge candidate; trigger a new PR event (such as updating the branch) instead of re-running or reusing the stale result. |
 | Test passes only after retry | Preserve first failure, investigate and report instability; no automatic quarantine or weakened required gate. |
 | Expired quarantine with no repair evidence | Flag overdue coverage gap and pursue repair/restoration within scope; no silent extension or claim of automatic expiry enforcement. |
 | CI slowed after adding a supported platform | Compare like-for-like samples and required coverage before tuning; do not remove the platform merely to improve duration. |
