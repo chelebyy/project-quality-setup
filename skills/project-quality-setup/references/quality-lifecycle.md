@@ -11,6 +11,7 @@ Record only information that changes future decisions:
 - Relevant visibility/entitlement/cost constraints, including unknowns; no credentials, private billing details or invented cost estimates.
 - Risk-to-test mapping, measured baseline/run evidence, and open work with next action.
 - Significant decisions and why they changed, keeping history brief instead of appending every run log.
+- For security scanning, retain the [coverage evidence, baseline and finding/exception decisions](security-scanning.md) needed to distinguish new issues, known debt and incomplete analysis. Reuse an existing finding tracker instead of duplicating sensitive reports here.
 
 Read this record at subsequent invocations, then verify it against source, configuration and current remote evidence. It is a decision aid, not proof that old checks still run or that earlier plan entitlements remain valid. Preserve unrelated documentation.
 
@@ -46,6 +47,7 @@ Choose maintenance when the user requests upkeep or invokes setup on an already 
 - Read the decision record and compare current manifests/platforms, critical flows, test scenarios, workflows/triggers, tool support, visibility and entitlements.
 - Inspect a bounded representative sample of recent runs. Compare durations for like events/jobs/runners and similar workloads, separating queue time from execution where available. Report sample window/count and uncertainty; slower runs alone do not justify removing coverage.
 - Identify new uncovered flows, broken commands, duplicate or obsolete checks, unused artifacts, stale quarantines and runtime/dependency drift. A rarely triggered release check is not obsolete merely because it has few runs.
+- Reassess security exceptions and full-scan debt; compare tool/rule/scope changes before calling missing findings fixed. A change-aware clean PR does not close findings outside its analyzed scope.
 - Keep working checks. Add or repair demonstrated gaps and tune expensive checks using measurements. Verify callers, required-check rules, consumers and authorization before retiring a job or changing its trigger; avoid leaving required statuses permanently pending.
 - Re-run affected validation and refresh the same decision record with verified changes and unresolved work. Do not reset baselines to conceal regressions or auto-accept visual/performance changes.
 

@@ -1,0 +1,8 @@
+{
+  "synthetic": true,
+  "provider_installed": false,
+  "cloud_credentials_available": false,
+  "plan_available": false,
+  "live_state": "unknown",
+  "request_scope": "recommend local IaC validation only"
+}

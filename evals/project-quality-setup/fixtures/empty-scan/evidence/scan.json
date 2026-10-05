@@ -1,0 +1,15 @@
+{
+  "synthetic": true,
+  "tool": "scanner-fixture",
+  "job_status": "success",
+  "exit_code": 0,
+  "findings": [],
+  "targets_analyzed": 0,
+  "rules_loaded": 0,
+  "errors": [
+    "Rule configuration could not be loaded"
+  ],
+  "expected_roots": [
+    "app.py"
+  ]
+}

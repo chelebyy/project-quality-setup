@@ -36,9 +36,12 @@ Official source: https://github.com/millionco/react-doctor
 | Dependency Review action | Review dependency changes introduced by a PR | PR check when supported/entitled; policy for vulnerability severity and licenses based on actual project needs. Not the same as scanning the whole installed tree. |
 | npm/pnpm/yarn audit, pip-audit, NuGet auditing | Appropriate ecosystem vulnerability assessment | Local/PR or scheduled according to cost and policy; distinguish production and development dependencies and preserve actionable failures. Verify current toolchain behavior. |
 | Gitleaks | Secret detection gap not already covered adequately | Local/PR and initial history assessment where needed; scan scope matters. Remediation can require credential rotation, not just deleting text. |
-| CodeQL / Semgrep | Supported-language static security analysis | Select based on languages, build needs, rules, license and GitHub entitlements; PR/default branch or schedule. Do not automatically run overlapping products. |
+| CodeQL | Supported-language static security analysis where it fits the build and available entitlements | Reuse existing coverage; check language/build requirements, query policy and actual analyzed scope. PR/default branch or schedule as justified. |
+| Semgrep | Applicable source risks or project-specific patterns not adequately covered by existing checks | Follow the [Semgrep operating policy](security-scanning.md#semgrep-operating-policy): choose engine/rules, local versus platform use, full versus change-aware scope, and independent finding/error gates. Do not automatically add it alongside an equivalent scanner. |
 
 Dependabot runs are maintenance activity, not proof that application tests ran. Dependency update PRs must exercise appropriate project checks. Do not auto-merge updates or install an auto-merge workflow without authorization. Private registry authentication must use appropriate secret facilities and must not expose credentials to untrusted PR jobs.
+
+Apply the [scan evidence contract](security-scanning.md#scan-evidence-contract) and [finding lifecycle](security-scanning.md#finding-and-exception-lifecycle) to relevant security tools, not just Semgrep. Keep existing debt visible when using change-aware gates; confirm the actual comparison revision and preserve execution errors.
 
 Official sources:
 - https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates
@@ -70,5 +73,7 @@ Official sources:
 | Publish/package smoke | Desktop/CLI/app produces distributable artifacts | Supported OS/RID/package validation, install/start smoke where feasible; packaging success does not authorize signing/upload/release. |
 | Restore/recovery integration tests | Backup/restore is an actual product or deployment responsibility | Isolated fixtures/services, usually scheduled/manual; do not test restore against production. |
 | Aggregate quality gate | Several conditional jobs need one stable required status | Explicitly propagate failures and distinguish intentional skips; verify rule/check naming and event coverage. |
+| ZAP / existing dynamic scanner | A running web/API test environment and a runtime security gap | Follow [runtime checks](runtime-infrastructure-checks.md#running-web-applications-and-apis). Passive analysis can still involve crawling/requests; active probing needs matching authorization and isolated data. |
+| Checkov / existing infrastructure scanner | Supported infrastructure-as-code files and a configuration risk | Follow [infrastructure checks](runtime-infrastructure-checks.md#infrastructure-as-code). Scope local frameworks/rules; static scanning does not authorize cloud changes or establish live-state compliance. |
 
 Preserve useful repository-specific scripts (such as context lint, schema/phase audits, or custom security gates) after inspecting what they validate. Do not transplant them into unrelated projects merely because another repository uses them. Deployment workflows, AI review bots, and release automation are separate choices rather than automatic quality-setup additions.
