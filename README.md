@@ -82,7 +82,7 @@ Validation discovers every skill directory and checks safe YAML parsing, nonempt
 
 Local Markdown validation covers inline/reference links and images in README, skill documents and the evaluation guide; it ignores fenced/inline code examples and external URLs. It checks repository boundaries, file existence, and Markdown heading/custom-anchor targets, including duplicate headings. It does not fetch external pages, validate anchors in non-Markdown files, or emulate every GitHub rendering extension/raw HTML link. Every skill must have a real README link to its entrypoint.
 
-The [behavioral evaluation inputs](evals/README.md) provide ten isolated scenarios and a preparation helper. Ordinary CI validates fixtures and preparation safety; it does **not** run a model or establish behavioral success. Keep actual agent transcripts, observed file changes and reviewer grading separate from packaging test results.
+The [behavioral evaluation inputs](evals/README.md) provide twelve isolated scenarios and a preparation helper. Ordinary CI validates fixtures and preparation safety; it does **not** run a model or establish behavioral success. Keep actual agent transcripts, observed file changes and reviewer grading separate from packaging test results.
 
 Contributions should include a realistic scenario and evidence for the proposed guidance, avoid universal rules derived from one project, and preserve authorization boundaries. Open a pull request with the scope and validation performed.
 

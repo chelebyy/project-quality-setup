@@ -160,7 +160,7 @@
       "fixture": "stale-check",
       "prompt": "$project-quality-setup ile açık PR'ın birleştirmeye hazır olup olmadığını değerlendir. Kontrol yeşil görünüyor. Dosya veya ayar değiştirme.",
       "checks": [
-        "Compare the tested head/base SHAs with the current base before relying on the green check.",
+        "Compare the tested checkout (merge) SHA and its head/base SHAs with the current merge candidate before relying on the green check.",
         "Notice that the PR run executed 1 test while the current base executes 2.",
         "Recommend a new PR event (such as updating the branch) instead of re-running the stale workflow, then verify the new run's base SHA."
       ],
