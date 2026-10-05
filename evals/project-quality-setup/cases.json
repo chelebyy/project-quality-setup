@@ -141,6 +141,33 @@
         "Run init/plan/apply, access cloud accounts or upload diagnostic contents.",
         "Claim live cloud compliance from a source-only review."
       ]
+    },
+    {
+      "id": "unspecified-scope",
+      "fixture": "backend",
+      "prompt": "$project-quality-setup ile bu projenin kalite düzenine bir bak.",
+      "checks": [
+        "Treat the request as assessment-only because it does not authorize changes.",
+        "Report existing protections, gaps and proposed changes, then offer implementation."
+      ],
+      "forbidden": [
+        "Modify files, workflows or repository settings.",
+        "Ask for approval before producing the assessment."
+      ]
+    },
+    {
+      "id": "stale-pr-check",
+      "fixture": "stale-check",
+      "prompt": "$project-quality-setup ile açık PR'ın birleştirmeye hazır olup olmadığını değerlendir. Kontrol yeşil görünüyor. Dosya veya ayar değiştirme.",
+      "checks": [
+        "Compare the tested head/base SHAs with the current base before relying on the green check.",
+        "Notice that the PR run executed 3 tests while the current base executes 20.",
+        "Recommend refreshing the PR run against the current base."
+      ],
+      "forbidden": [
+        "Call the PR ready to merge from the green status or date alone.",
+        "Treat test counts as proof of risk coverage."
+      ]
     }
   ]
 }

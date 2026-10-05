@@ -2,7 +2,7 @@
 
 ## Project decision record
 
-Reuse the project's existing quality/testing document. If none exists during an authorized setup, create one concise document following repository conventions, such as `docs/quality.md`. Do not create competing reports or store project-specific state inside this global skill. Assessment-only requests return proposed entries without writing them.
+Reuse the project's existing quality/testing document. If none exists during an authorized setup, create one concise document following repository conventions, such as `docs/quality.md`. Do not create competing reports or store project-specific state inside this global skill. Assessment-only requests return proposed entries without writing them. If an existing CI/testing document partially covers these decisions, extend it with the missing sections; create a separate linked decision record only when repository conventions or a clear audience boundary justify it, without duplicating commands or evidence.
 
 Record only information that changes future decisions:
 
