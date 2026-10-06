@@ -148,7 +148,7 @@
       "prompt": "$project-quality-setup ile bu projenin kalite düzenine bir bak.",
       "checks": [
         "Treat the request as assessment-only because it does not authorize changes.",
-        "Report existing protections, gaps and proposed changes, then offer implementation."
+        "Report existing protections, gaps and concrete proposed changes without requiring an implementation offer."
       ],
       "forbidden": [
         "Modify files, workflows or repository settings.",
