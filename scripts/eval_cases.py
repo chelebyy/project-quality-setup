@@ -102,8 +102,9 @@ def prepare(case_id, output, suite_path=SUITE):
         "The supplied repository/run data are synthetic offline snapshots, not live evidence. "
         "Do not access external services, network, credentials, production or other repositories; "
         "do not install dependencies. Follow the user's mutation limits below. "
-        "Use only the prepared inputs, not the evaluation suite or grader rubric.\n\n"
-        + case["prompt"] + "\n"
+        "Use only the prepared inputs, not the evaluation suite or grader rubric. "
+        "Respond in the language of the user request below.\n\n"
+        "User request:\n" + case["prompt"] + "\n"
     )
     (output / "TASK.md").write_text(task, encoding="utf-8")
     record = {
